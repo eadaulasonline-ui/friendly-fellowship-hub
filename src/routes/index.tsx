@@ -1,122 +1,115 @@
 import { createFileRoute } from "@tanstack/react-router";
 import {
   ArrowRight,
+  BadgeCheck,
   CheckCircle2,
-  HeartPulse,
+  Heart,
   Leaf,
+  PackageCheck,
   Rabbit,
-  Scale,
   ShieldCheck,
+  ShoppingBag,
   Sparkles,
+  Truck,
   Wheat,
 } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "NutriCoelho | Nutrição completa para coelhos" },
+      { title: "NutriCoelho | Rações premium para coelhos" },
       {
         name: "description",
         content:
-          "Landing page sobre ração para coelhos com foco em nutrição equilibrada, fibras, bem-estar e cuidado diário.",
+          "Rações premium para coelhos com fibras, ingredientes selecionados e opções para diferentes fases da vida.",
       },
     ],
   }),
   component: Index,
 });
 
+const products = [
+  {
+    name: "NutriCoelho Select",
+    subtitle: "Adultos",
+    description: "Fórmula equilibrada para a rotina de coelhos adultos, com fibras e nutrientes essenciais.",
+    badge: "Mais vendido",
+    accent: "from-emerald-700 to-emerald-950",
+    sizes: "500 g · 1,5 kg · 3 kg",
+  },
+  {
+    name: "NutriCoelho Sensitive",
+    subtitle: "Digestão delicada",
+    description: "Composição cuidadosa para tutores que buscam uma opção leve e rica em fibras para o dia a dia.",
+    badge: "Fórmula leve",
+    accent: "from-teal-600 to-emerald-900",
+    sizes: "500 g · 1,5 kg",
+  },
+  {
+    name: "NutriCoelho Junior",
+    subtitle: "Filhotes",
+    description: "Nutrição pensada para a fase de crescimento, com uma combinação completa de vitaminas e minerais.",
+    badge: "Crescimento",
+    accent: "from-amber-500 to-orange-700",
+    sizes: "500 g · 1,5 kg",
+  },
+];
+
 const benefits = [
   {
     icon: Wheat,
-    title: "Fibras de qualidade",
-    description:
-      "Uma alimentação rica em fibras contribui para a rotina digestiva e para o desgaste natural dos dentes.",
-  },
-  {
-    icon: HeartPulse,
-    title: "Bem-estar diário",
-    description:
-      "Nutrientes essenciais ajudam a manter energia, disposição e uma rotina mais equilibrada.",
+    title: "Fibras na medida certa",
+    description: "Uma base alimentar equilibrada para complementar o feno e apoiar a rotina digestiva.",
   },
   {
     icon: ShieldCheck,
-    title: "Seleção cuidadosa",
-    description:
-      "Ingredientes escolhidos para complementar uma dieta que também deve incluir feno e água fresca.",
+    title: "Ingredientes selecionados",
+    description: "Composição desenvolvida com foco em qualidade, equilíbrio e cuidado diário.",
+  },
+  {
+    icon: Heart,
+    title: "Bem-estar todos os dias",
+    description: "Nutrientes essenciais para uma rotina mais ativa, saudável e cheia de vitalidade.",
   },
 ];
 
-const nutrition = [
-  "Fonte de fibras para a rotina digestiva",
-  "Vitaminas e minerais essenciais",
-  "Pellets uniformes que facilitam o manejo",
-  "Formulação pensada para alimentação diária",
+const trustItems = [
+  { icon: Truck, label: "Envio seguro", detail: "Embalagem protegida" },
+  { icon: PackageCheck, label: "Compra prática", detail: "Escolha o tamanho ideal" },
+  { icon: BadgeCheck, label: "Qualidade premium", detail: "Seleção cuidadosa" },
 ];
 
-function RabbitIllustration() {
+function ProductBag({ product, index }: { product: (typeof products)[number]; index: number }) {
   return (
-    <div className="relative mx-auto w-full max-w-[520px]" aria-hidden="true">
-      <div className="absolute -left-8 top-16 h-32 w-32 rounded-full bg-emerald-200/60 blur-3xl" />
-      <div className="absolute -right-10 bottom-10 h-40 w-40 rounded-full bg-amber-200/70 blur-3xl" />
-
-      <div className="relative overflow-hidden rounded-[2.25rem] border border-white/70 bg-white/80 p-6 shadow-[0_30px_80px_-30px_rgba(22,101,52,0.35)] backdrop-blur sm:p-9">
-        <div className="absolute right-5 top-5 rounded-full bg-emerald-50 px-3 py-1 text-xs font-bold uppercase tracking-[0.18em] text-emerald-700">
-          Nutrição + cuidado
+    <div className="relative mx-auto flex h-72 w-full max-w-[230px] items-end justify-center">
+      <div className="absolute bottom-3 h-8 w-40 rounded-full bg-emerald-950/15 blur-xl" />
+      <div
+        className={`relative flex h-64 w-48 flex-col overflow-hidden rounded-[1.6rem_1.6rem_2rem_2rem] bg-gradient-to-br ${product.accent} p-5 text-white shadow-[0_24px_50px_-18px_rgba(6,78,59,0.5)] transition duration-500 group-hover:-translate-y-2 group-hover:rotate-1`}
+      >
+        <div className="absolute -right-8 -top-10 h-28 w-28 rounded-full border-[18px] border-white/10" />
+        <div className="absolute -left-10 bottom-8 h-28 w-28 rounded-full bg-white/5" />
+        <div className="relative flex items-center justify-between">
+          <div className="grid h-10 w-10 place-items-center rounded-2xl bg-white/15 backdrop-blur">
+            <Rabbit size={22} />
+          </div>
+          <span className="rounded-full border border-white/20 bg-white/10 px-2.5 py-1 text-[10px] font-black uppercase tracking-[0.12em]">
+            Premium
+          </span>
         </div>
-
-        <svg viewBox="0 0 460 380" className="w-full">
-          <defs>
-            <linearGradient id="bowl" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stopColor="#166534" />
-              <stop offset="100%" stopColor="#15803d" />
-            </linearGradient>
-          </defs>
-
-          <ellipse cx="235" cy="338" rx="158" ry="20" fill="#dcfce7" />
-
-          <path
-            d="M294 121c23-72 17-103-7-106-24-3-39 34-45 94"
-            fill="#f5f5f4"
-            stroke="#d6d3d1"
-            strokeWidth="5"
-          />
-          <path
-            d="M212 115c-4-75-24-104-48-96-24 8-21 49-2 103"
-            fill="#fafaf9"
-            stroke="#d6d3d1"
-            strokeWidth="5"
-          />
-          <path d="M279 95c9-45 8-64-2-67-11-2-20 21-23 61" fill="#fecdd3" />
-          <path d="M197 92c-5-43-15-62-26-58-11 4-7 27 6 64" fill="#fecdd3" />
-
-          <ellipse cx="234" cy="193" rx="92" ry="92" fill="#fafaf9" />
-          <ellipse cx="171" cy="180" rx="34" ry="46" fill="#f5f5f4" />
-          <ellipse cx="298" cy="180" rx="34" ry="46" fill="#f5f5f4" />
-          <circle cx="204" cy="182" r="9" fill="#292524" />
-          <circle cx="264" cy="182" r="9" fill="#292524" />
-          <circle cx="207" cy="179" r="3" fill="white" />
-          <circle cx="267" cy="179" r="3" fill="white" />
-          <path d="M226 211c5-6 12-6 17 0-1 10-6 15-9 15s-8-5-8-15Z" fill="#fb7185" />
-          <path d="M234 226c-7 10-18 11-26 4" fill="none" stroke="#78716c" strokeWidth="3" strokeLinecap="round" />
-          <path d="M234 226c7 10 18 11 26 4" fill="none" stroke="#78716c" strokeWidth="3" strokeLinecap="round" />
-
-          <path d="M188 257c18-10 29-13 46-13 17 0 31 4 49 14l18 69H167l21-70Z" fill="#f5f5f4" />
-
-          <ellipse cx="234" cy="307" rx="126" ry="35" fill="#d6b27b" />
-          <circle cx="171" cy="296" r="7" fill="#8b5e34" />
-          <circle cx="192" cy="309" r="6" fill="#95683d" />
-          <circle cx="217" cy="293" r="7" fill="#7c4f2c" />
-          <circle cx="240" cy="307" r="7" fill="#8b5e34" />
-          <circle cx="265" cy="294" r="6" fill="#95683d" />
-          <circle cx="287" cy="308" r="7" fill="#7c4f2c" />
-          <circle cx="308" cy="296" r="6" fill="#8b5e34" />
-          <path d="M109 300h250c0 35-27 61-61 61H170c-34 0-61-26-61-61Z" fill="url(#bowl)" />
-          <path d="M140 336h188" stroke="#86efac" strokeWidth="5" strokeLinecap="round" opacity="0.55" />
-
-          <path d="M86 258c12-29 31-44 54-51" fill="none" stroke="#16a34a" strokeWidth="8" strokeLinecap="round" />
-          <path d="M92 244c-21-4-31-17-31-37 21-1 36 9 42 28" fill="#4ade80" />
-          <path d="M105 227c-9-18-4-33 12-45 15 13 18 29 9 45" fill="#22c55e" />
-        </svg>
+        <div className="relative mt-7">
+          <p className="text-[11px] font-black uppercase tracking-[0.2em] text-white/65">NutriCoelho</p>
+          <h3 className="mt-2 text-2xl font-black leading-none tracking-tight">{product.subtitle}</h3>
+        </div>
+        <div className="relative mt-auto flex items-end justify-between border-t border-white/15 pt-4">
+          <div>
+            <p className="text-xs font-bold text-white/65">Ração completa</p>
+            <p className="mt-1 text-sm font-black">Fibras + vitaminas</p>
+          </div>
+          <div className="grid h-11 w-11 place-items-center rounded-full bg-white text-emerald-900 shadow-lg">
+            <Leaf size={20} />
+          </div>
+        </div>
+        <span className="absolute bottom-3 right-4 text-[62px] font-black leading-none text-white/[0.035]">0{index + 1}</span>
       </div>
     </div>
   );
@@ -124,180 +117,261 @@ function RabbitIllustration() {
 
 function Index() {
   return (
-    <main className="min-h-screen overflow-hidden bg-emerald-100 text-stone-900">
-      <header className="relative z-20 border-b border-emerald-950/5 bg-emerald-100/90 backdrop-blur">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 sm:px-8 lg:px-10">
-          <a href="#inicio" className="flex items-center gap-3 font-black tracking-tight text-emerald-950">
-            <span className="grid h-10 w-10 place-items-center rounded-2xl bg-emerald-700 text-white shadow-lg shadow-emerald-900/15">
-              <Rabbit size={22} strokeWidth={2.4} />
+    <main className="min-h-screen overflow-hidden bg-[#f6f5ee] text-[#162019]">
+      <div className="bg-emerald-950 px-5 py-2.5 text-center text-xs font-bold tracking-wide text-emerald-50 sm:text-sm">
+        <span className="inline-flex items-center gap-2">
+          <Sparkles size={14} className="text-amber-300" />
+          Nutrição premium para uma rotina mais saudável e equilibrada
+        </span>
+      </div>
+
+      <header className="relative z-30 border-b border-emerald-950/10 bg-[#f6f5ee]/95 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8 lg:px-10">
+          <a href="#inicio" className="flex items-center gap-3 text-emerald-950">
+            <span className="grid h-11 w-11 place-items-center rounded-2xl bg-emerald-800 text-white shadow-lg shadow-emerald-950/15">
+              <Rabbit size={24} strokeWidth={2.4} />
             </span>
-            <span className="text-xl">NutriCoelho</span>
+            <div>
+              <span className="block text-xl font-black leading-none tracking-[-0.03em]">NutriCoelho</span>
+              <span className="mt-1 block text-[10px] font-extrabold uppercase tracking-[0.2em] text-emerald-700">Premium nutrition</span>
+            </div>
           </a>
 
-          <nav className="hidden items-center gap-7 text-sm font-semibold text-stone-600 md:flex" aria-label="Navegação principal">
-            <a className="transition hover:text-emerald-700" href="#beneficios">
-              Benefícios
-            </a>
-            <a className="transition hover:text-emerald-700" href="#nutricao">
-              Nutrição
-            </a>
-            <a className="transition hover:text-emerald-700" href="#cuidados">
-              Cuidados
-            </a>
+          <nav className="hidden items-center gap-8 text-sm font-bold text-stone-600 md:flex" aria-label="Navegação principal">
+            <a className="transition hover:text-emerald-800" href="#produtos">Produtos</a>
+            <a className="transition hover:text-emerald-800" href="#beneficios">Benefícios</a>
+            <a className="transition hover:text-emerald-800" href="#como-escolher">Como escolher</a>
           </nav>
 
           <a
-            href="#nutricao"
-            className="rounded-full bg-emerald-700 px-5 py-2.5 text-sm font-bold text-white shadow-lg shadow-emerald-900/15 transition hover:bg-emerald-800"
+            href="#produtos"
+            className="inline-flex items-center gap-2 rounded-full bg-emerald-800 px-5 py-3 text-sm font-black text-white shadow-lg shadow-emerald-950/15 transition hover:-translate-y-0.5 hover:bg-emerald-900"
           >
-            Conheça mais
+            <ShoppingBag size={17} />
+            <span className="hidden sm:inline">Ver rações</span>
+            <span className="sm:hidden">Comprar</span>
           </a>
         </div>
       </header>
 
       <section id="inicio" className="relative">
-        <div className="absolute inset-x-0 top-0 -z-0 h-[520px] bg-[radial-gradient(circle_at_20%_10%,rgba(187,247,208,0.55),transparent_38%),radial-gradient(circle_at_85%_20%,rgba(254,215,170,0.55),transparent_34%)]" />
-
-        <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-12 px-5 py-16 sm:px-8 sm:py-20 lg:grid-cols-[1.05fr_0.95fr] lg:px-10 lg:py-24">
-          <div>
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-200 bg-white/80 px-4 py-2 text-xs font-extrabold uppercase tracking-[0.16em] text-emerald-700 shadow-sm">
-              <Sparkles size={15} />
-              Alimentação equilibrada todos os dias
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_16%_10%,rgba(167,243,208,0.38),transparent_28%),radial-gradient(circle_at_92%_22%,rgba(253,230,138,0.35),transparent_26%)]" />
+        <div className="relative mx-auto grid min-h-[720px] max-w-7xl items-center gap-12 px-5 py-14 sm:px-8 sm:py-20 lg:grid-cols-[0.92fr_1.08fr] lg:px-10 lg:py-24">
+          <div className="relative z-10">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-900/10 bg-white/80 px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-emerald-800 shadow-sm backdrop-blur">
+              <Leaf size={15} />
+              Cuidado que começa pela alimentação
             </div>
 
-            <h1 className="max-w-3xl text-5xl font-black leading-[0.98] tracking-[-0.045em] text-emerald-950 sm:text-6xl lg:text-7xl">
-              Mais nutrição para uma vida mais leve e saudável.
+            <h1 className="max-w-3xl text-5xl font-black leading-[0.96] tracking-[-0.055em] text-emerald-950 sm:text-6xl lg:text-[4.8rem]">
+              Ração premium para coelhos que merecem o melhor.
             </h1>
 
-            <p className="mt-7 max-w-2xl text-lg leading-8 text-stone-600 sm:text-xl">
-              Uma boa ração complementa a alimentação do seu coelho com fibras, vitaminas e minerais importantes para a rotina, o bem-estar e a vitalidade.
+            <p className="mt-7 max-w-xl text-lg leading-8 text-stone-600 sm:text-xl">
+              Fórmulas equilibradas, ricas em fibras e pensadas para diferentes fases da vida. Mais praticidade para você e mais cuidado na rotina do seu coelho.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
               <a
-                href="#beneficios"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-700 px-7 py-4 text-sm font-extrabold text-white shadow-xl shadow-emerald-900/20 transition hover:-translate-y-0.5 hover:bg-emerald-800"
+                href="#produtos"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-emerald-800 px-7 py-4 text-sm font-black text-white shadow-xl shadow-emerald-950/20 transition hover:-translate-y-0.5 hover:bg-emerald-900"
               >
-                Ver benefícios
+                Escolher minha ração
                 <ArrowRight size={18} />
               </a>
               <a
-                href="#cuidados"
-                className="inline-flex items-center justify-center rounded-full border border-stone-300 bg-white/80 px-7 py-4 text-sm font-extrabold text-stone-700 transition hover:border-emerald-300 hover:text-emerald-800"
+                href="#como-escolher"
+                className="inline-flex items-center justify-center rounded-full border border-emerald-950/15 bg-white/70 px-7 py-4 text-sm font-black text-emerald-950 transition hover:bg-white"
               >
-                Guia de alimentação
+                Qual é a ideal?
               </a>
             </div>
 
-            <div className="mt-10 grid max-w-xl grid-cols-3 gap-3 border-t border-stone-200 pt-6">
-              <div>
-                <strong className="block text-2xl font-black text-emerald-800">Fibras</strong>
-                <span className="text-xs font-semibold text-stone-500">na rotina alimentar</span>
-              </div>
-              <div>
-                <strong className="block text-2xl font-black text-emerald-800">Vitaminas</strong>
-                <span className="text-xs font-semibold text-stone-500">suporte nutricional</span>
-              </div>
-              <div>
-                <strong className="block text-2xl font-black text-emerald-800">Equilíbrio</strong>
-                <span className="text-xs font-semibold text-stone-500">para o dia a dia</span>
-              </div>
+            <div className="mt-9 flex flex-wrap gap-x-6 gap-y-3 text-sm font-bold text-stone-600">
+              <span className="inline-flex items-center gap-2"><CheckCircle2 size={17} className="text-emerald-700" /> Fibras de qualidade</span>
+              <span className="inline-flex items-center gap-2"><CheckCircle2 size={17} className="text-emerald-700" /> Vitaminas e minerais</span>
+              <span className="inline-flex items-center gap-2"><CheckCircle2 size={17} className="text-emerald-700" /> Pellets uniformes</span>
             </div>
           </div>
 
-          <RabbitIllustration />
+          <div className="relative mx-auto w-full max-w-[650px] lg:ml-auto">
+            <div className="absolute -left-8 -top-8 h-36 w-36 rounded-full bg-amber-300/40 blur-3xl" />
+            <div className="absolute -bottom-8 -right-8 h-44 w-44 rounded-full bg-emerald-300/50 blur-3xl" />
+
+            <div className="relative overflow-hidden rounded-[2.5rem] border border-white/70 bg-emerald-950 shadow-[0_40px_100px_-35px_rgba(6,78,59,0.65)]">
+              <img
+                src="https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?auto=format&fit=crop&w=1400&q=88"
+                alt="Coelho em ambiente natural representando alimentação saudável"
+                className="h-[560px] w-full object-cover object-center sm:h-[620px]"
+                fetchPriority="high"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-emerald-950 via-emerald-950/15 to-transparent" />
+              <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
+                <div className="max-w-sm rounded-[1.7rem] border border-white/15 bg-emerald-950/80 p-5 text-white shadow-2xl backdrop-blur-xl">
+                  <div className="flex items-center justify-between gap-4">
+                    <div>
+                      <p className="text-xs font-extrabold uppercase tracking-[0.16em] text-emerald-300">Escolha premium</p>
+                      <p className="mt-1 text-xl font-black">NutriCoelho Select</p>
+                    </div>
+                    <div className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-amber-300 text-emerald-950">
+                      <Wheat size={24} />
+                    </div>
+                  </div>
+                  <p className="mt-3 text-sm leading-6 text-emerald-50/75">Nutrição equilibrada para complementar o feno e a água fresca todos os dias.</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="absolute -left-4 top-12 hidden rounded-2xl border border-white/70 bg-white/90 px-4 py-3 shadow-xl backdrop-blur sm:block">
+              <p className="text-xs font-black uppercase tracking-[0.13em] text-emerald-700">Alta fibra</p>
+              <p className="mt-1 text-sm font-bold text-stone-600">Rotina equilibrada</p>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section id="beneficios" className="bg-emerald-950 py-20 text-white sm:py-24">
+      <section className="border-y border-emerald-950/10 bg-white/80">
+        <div className="mx-auto grid max-w-7xl divide-y divide-emerald-950/10 px-5 sm:grid-cols-3 sm:divide-x sm:divide-y-0 sm:px-8 lg:px-10">
+          {trustItems.map(({ icon: Icon, label, detail }) => (
+            <div key={label} className="flex items-center justify-center gap-4 py-6 sm:px-5">
+              <div className="grid h-11 w-11 place-items-center rounded-2xl bg-emerald-100 text-emerald-800">
+                <Icon size={21} />
+              </div>
+              <div>
+                <p className="font-black text-emerald-950">{label}</p>
+                <p className="mt-0.5 text-xs font-semibold text-stone-500">{detail}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="produtos" className="bg-white py-20 sm:py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
-          <div className="max-w-2xl">
-            <span className="text-sm font-extrabold uppercase tracking-[0.2em] text-emerald-300">Por que a escolha importa</span>
-            <h2 className="mt-4 text-4xl font-black tracking-[-0.035em] sm:text-5xl">
-              Nutrição pensada para acompanhar cada fase da rotina.
-            </h2>
+          <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
+            <div className="max-w-2xl">
+              <span className="text-xs font-black uppercase tracking-[0.22em] text-emerald-700">Nossa linha</span>
+              <h2 className="mt-4 text-4xl font-black tracking-[-0.045em] text-emerald-950 sm:text-5xl">A fórmula certa para cada fase.</h2>
+              <p className="mt-5 text-lg leading-8 text-stone-600">Escolha de acordo com a idade e as necessidades do seu coelho. Em caso de dúvida, peça orientação ao médico-veterinário.</p>
+            </div>
+            <div className="rounded-2xl bg-amber-100 px-5 py-3 text-sm font-bold text-amber-900">
+              Feno de qualidade e água fresca continuam essenciais.
+            </div>
           </div>
 
-          <div className="mt-12 grid gap-5 md:grid-cols-3">
-            {benefits.map(({ icon: Icon, title, description }) => (
-              <article key={title} className="rounded-[2rem] border border-white/10 bg-white/[0.06] p-7 backdrop-blur-sm">
-                <div className="mb-6 grid h-12 w-12 place-items-center rounded-2xl bg-emerald-400/15 text-emerald-300">
-                  <Icon size={24} />
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+            {products.map((product, index) => (
+              <article key={product.name} className="group rounded-[2.25rem] border border-stone-200 bg-[#fbfbf7] p-6 shadow-[0_18px_60px_-35px_rgba(6,78,59,0.3)] transition hover:-translate-y-1 hover:border-emerald-200 hover:shadow-[0_30px_70px_-35px_rgba(6,78,59,0.45)] sm:p-7">
+                <div className="flex items-center justify-between gap-3">
+                  <span className="rounded-full bg-emerald-100 px-3 py-1.5 text-[11px] font-black uppercase tracking-[0.14em] text-emerald-800">{product.badge}</span>
+                  <span className="text-xs font-bold text-stone-400">{product.sizes}</span>
                 </div>
-                <h3 className="text-xl font-extrabold">{title}</h3>
-                <p className="mt-3 leading-7 text-emerald-50/70">{description}</p>
+                <ProductBag product={product} index={index} />
+                <div className="mt-2">
+                  <p className="text-sm font-extrabold uppercase tracking-[0.13em] text-emerald-700">{product.subtitle}</p>
+                  <h3 className="mt-2 text-2xl font-black tracking-tight text-emerald-950">{product.name}</h3>
+                  <p className="mt-3 min-h-20 text-sm leading-7 text-stone-600">{product.description}</p>
+                  <a href="#como-escolher" className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-full bg-emerald-950 px-5 py-3.5 text-sm font-black text-white transition hover:bg-emerald-800">
+                    Ver detalhes
+                    <ArrowRight size={17} />
+                  </a>
+                </div>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="nutricao" className="py-20 sm:py-24">
-        <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-2 lg:items-center lg:px-10">
-          <div className="relative rounded-[2.2rem] bg-[#eff8e9] p-7 sm:p-10">
-            <div className="absolute -right-5 -top-5 grid h-20 w-20 place-items-center rounded-[1.75rem] bg-amber-300 text-emerald-950 shadow-xl rotate-6">
-              <Leaf size={34} strokeWidth={2.5} />
-            </div>
-            <span className="text-sm font-extrabold uppercase tracking-[0.2em] text-emerald-700">Composição inteligente</span>
-            <h2 className="mt-4 max-w-lg text-4xl font-black tracking-[-0.035em] text-emerald-950 sm:text-5xl">
-              O essencial para complementar uma alimentação bem cuidada.
-            </h2>
-            <p className="mt-5 max-w-xl text-lg leading-8 text-stone-600">
-              A ração deve fazer parte de um conjunto de cuidados. Feno de qualidade, água limpa e orientação profissional continuam sendo fundamentais para uma dieta adequada.
-            </p>
+      <section id="beneficios" className="relative overflow-hidden bg-emerald-950 py-20 text-white sm:py-24">
+        <div className="absolute -left-20 top-10 h-64 w-64 rounded-full bg-emerald-700/30 blur-3xl" />
+        <div className="absolute -right-20 bottom-0 h-72 w-72 rounded-full bg-amber-400/10 blur-3xl" />
+        <div className="relative mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+          <div className="max-w-3xl">
+            <span className="text-xs font-black uppercase tracking-[0.22em] text-emerald-300">Por que NutriCoelho</span>
+            <h2 className="mt-4 text-4xl font-black tracking-[-0.045em] sm:text-5xl">Qualidade que aparece na rotina.</h2>
+            <p className="mt-5 max-w-2xl text-lg leading-8 text-emerald-50/70">Uma boa ração deve complementar uma alimentação rica em feno, água fresca e vegetais adequados, respeitando a orientação profissional.</p>
           </div>
 
-          <div className="space-y-4">
-            {nutrition.map((item) => (
-              <div key={item} className="flex items-start gap-4 rounded-2xl border border-stone-200 bg-white p-5 shadow-sm">
-                <CheckCircle2 className="mt-0.5 shrink-0 text-emerald-600" size={22} />
-                <span className="font-bold leading-7 text-stone-700">{item}</span>
-              </div>
+          <div className="mt-12 grid gap-5 md:grid-cols-3">
+            {benefits.map(({ icon: Icon, title, description }) => (
+              <article key={title} className="rounded-[2rem] border border-white/10 bg-white/[0.06] p-7 backdrop-blur-sm">
+                <div className="mb-7 grid h-13 w-13 place-items-center rounded-2xl bg-emerald-400/15 text-emerald-300">
+                  <Icon size={25} />
+                </div>
+                <h3 className="text-xl font-black">{title}</h3>
+                <p className="mt-3 leading-7 text-emerald-50/65">{description}</p>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="cuidados" className="pb-20 sm:pb-24">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
-          <div className="overflow-hidden rounded-[2.5rem] bg-amber-100">
-            <div className="grid gap-8 p-7 sm:p-10 lg:grid-cols-[0.8fr_1.2fr] lg:p-14">
-              <div className="flex items-center gap-4">
-                <div className="grid h-16 w-16 shrink-0 place-items-center rounded-2xl bg-amber-300 text-emerald-950">
-                  <Scale size={30} />
-                </div>
-                <div>
-                  <span className="text-xs font-extrabold uppercase tracking-[0.18em] text-amber-800">Quantidade certa</span>
-                  <h2 className="mt-1 text-3xl font-black tracking-tight text-emerald-950">Cada coelho é único.</h2>
-                </div>
-              </div>
+      <section id="como-escolher" className="bg-[#f6f5ee] py-20 sm:py-24">
+        <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-center lg:px-10">
+          <div className="relative overflow-hidden rounded-[2.5rem] bg-emerald-900 shadow-[0_30px_80px_-35px_rgba(6,78,59,0.55)]">
+            <img
+              src="https://images.unsplash.com/photo-1480554840075-72cbdabbf689?auto=format&fit=crop&w=1200&q=85"
+              alt="Coelho em área verde"
+              className="h-[520px] w-full object-cover"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-emerald-950/85 via-transparent to-transparent" />
+            <div className="absolute bottom-0 left-0 right-0 p-7 sm:p-9">
+              <p className="max-w-md text-2xl font-black leading-tight text-white">Alimentação equilibrada é cuidado em cada detalhe.</p>
+            </div>
+          </div>
 
-              <div className="grid gap-4 sm:grid-cols-3">
-                <div className="rounded-2xl bg-white/70 p-5">
-                  <strong className="text-emerald-900">1. Observe</strong>
-                  <p className="mt-2 text-sm leading-6 text-stone-600">Idade, peso, rotina e condição corporal influenciam a alimentação.</p>
+          <div>
+            <span className="text-xs font-black uppercase tracking-[0.22em] text-emerald-700">Como escolher</span>
+            <h2 className="mt-4 text-4xl font-black tracking-[-0.045em] text-emerald-950 sm:text-5xl">Três passos para acertar na compra.</h2>
+            <p className="mt-5 max-w-xl text-lg leading-8 text-stone-600">Observe a fase de vida, o peso e a rotina do seu coelho antes de escolher a fórmula. A quantidade diária também deve ser ajustada de forma individual.</p>
+
+            <div className="mt-8 space-y-4">
+              {[
+                ["01", "Identifique a fase", "Filhote, adulto ou um coelho com necessidades alimentares específicas."],
+                ["02", "Confira a composição", "Priorize fibras, pellets uniformes e uma formulação adequada para coelhos."],
+                ["03", "Faça a transição gradual", "Mudanças de alimentação devem ser progressivas para preservar a adaptação digestiva."],
+              ].map(([number, title, text]) => (
+                <div key={number} className="flex gap-4 rounded-2xl border border-emerald-950/10 bg-white p-5 shadow-sm">
+                  <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-emerald-100 text-sm font-black text-emerald-800">{number}</span>
+                  <div>
+                    <h3 className="font-black text-emerald-950">{title}</h3>
+                    <p className="mt-1 text-sm leading-6 text-stone-600">{text}</p>
+                  </div>
                 </div>
-                <div className="rounded-2xl bg-white/70 p-5">
-                  <strong className="text-emerald-900">2. Equilibre</strong>
-                  <p className="mt-2 text-sm leading-6 text-stone-600">Combine ração adequada, feno abundante e água sempre disponível.</p>
-                </div>
-                <div className="rounded-2xl bg-white/70 p-5">
-                  <strong className="text-emerald-900">3. Acompanhe</strong>
-                  <p className="mt-2 text-sm leading-6 text-stone-600">Para ajustes individuais, procure orientação de um médico-veterinário.</p>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      <footer className="border-t border-stone-200 bg-white">
-        <div className="mx-auto flex max-w-7xl flex-col gap-5 px-5 py-8 text-sm text-stone-500 sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-10">
-          <div className="flex items-center gap-2 font-extrabold text-emerald-900">
-            <Rabbit size={19} />
-            NutriCoelho
+      <section className="bg-white pb-20 sm:pb-24">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
+          <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-amber-200 via-amber-100 to-emerald-100 px-7 py-12 sm:px-12 sm:py-14 lg:flex lg:items-center lg:justify-between lg:gap-12 lg:px-16">
+            <div className="absolute -right-12 -top-12 h-44 w-44 rounded-full border-[32px] border-white/30" />
+            <div className="relative max-w-2xl">
+              <span className="text-xs font-black uppercase tracking-[0.22em] text-emerald-800">Pronto para escolher?</span>
+              <h2 className="mt-4 text-4xl font-black tracking-[-0.045em] text-emerald-950 sm:text-5xl">Encontre a ração ideal para o seu coelho.</h2>
+              <p className="mt-4 text-lg leading-8 text-stone-600">Compare nossas fórmulas e escolha a opção que melhor combina com a fase e a rotina do seu pet.</p>
+            </div>
+            <a href="#produtos" className="relative mt-8 inline-flex shrink-0 items-center justify-center gap-2 rounded-full bg-emerald-950 px-8 py-4 text-sm font-black text-white shadow-xl shadow-emerald-950/20 transition hover:-translate-y-0.5 hover:bg-emerald-800 lg:mt-0">
+              Ver todas as opções
+              <ArrowRight size={18} />
+            </a>
           </div>
-          <p>Informação, equilíbrio e cuidado para uma rotina mais saudável.</p>
+        </div>
+      </section>
+
+      <footer className="border-t border-emerald-950/10 bg-[#f6f5ee]">
+        <div className="mx-auto flex max-w-7xl flex-col gap-6 px-5 py-9 sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-10">
+          <div className="flex items-center gap-3 text-emerald-950">
+            <span className="grid h-10 w-10 place-items-center rounded-2xl bg-emerald-800 text-white"><Rabbit size={21} /></span>
+            <div>
+              <p className="font-black tracking-tight">NutriCoelho</p>
+              <p className="text-xs font-semibold text-stone-500">Nutrição, equilíbrio e cuidado.</p>
+            </div>
+          </div>
+          <p className="max-w-lg text-xs leading-5 text-stone-500 sm:text-right">A alimentação deve ser adequada às necessidades individuais do animal. Para recomendações específicas, consulte um médico-veterinário.</p>
         </div>
       </footer>
     </main>
