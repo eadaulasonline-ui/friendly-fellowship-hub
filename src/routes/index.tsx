@@ -117,7 +117,7 @@ function ProductBag({ product, index }: { product: (typeof products)[number]; in
 
 function Index() {
   return (
-    <main className="min-h-screen overflow-hidden bg-[#f6f5ee] text-[#162019]">
+    <main className="min-h-screen overflow-hidden bg-yellow-300 text-[#162019]">
       <div className="bg-emerald-950 px-5 py-2.5 text-center text-xs font-bold tracking-wide text-emerald-50 sm:text-sm">
         <span className="inline-flex items-center gap-2">
           <Sparkles size={14} className="text-amber-300" />
@@ -125,7 +125,7 @@ function Index() {
         </span>
       </div>
 
-      <header className="relative z-30 border-b border-emerald-950/10 bg-[#f6f5ee]/95 backdrop-blur-xl">
+      <header className="relative z-30 border-b border-emerald-950/10 bg-yellow-300/95 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8 lg:px-10">
           <a href="#inicio" className="flex items-center gap-3 text-emerald-950">
             <span className="grid h-11 w-11 place-items-center rounded-2xl bg-emerald-800 text-white shadow-lg shadow-emerald-950/15">
@@ -230,7 +230,7 @@ function Index() {
         </div>
       </section>
 
-      <section className="border-y border-emerald-950/10 bg-white/80">
+      <section className="border-y border-emerald-950/10 bg-yellow-200/90">
         <div className="mx-auto grid max-w-7xl divide-y divide-emerald-950/10 px-5 sm:grid-cols-3 sm:divide-x sm:divide-y-0 sm:px-8 lg:px-10">
           {trustItems.map(({ icon: Icon, label, detail }) => (
             <div key={label} className="flex items-center justify-center gap-4 py-6 sm:px-5">
@@ -246,7 +246,7 @@ function Index() {
         </div>
       </section>
 
-      <section id="produtos" className="bg-white py-20 sm:py-24">
+      <section id="produtos" className="bg-yellow-300 py-20 sm:py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
           <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
             <div className="max-w-2xl">
@@ -306,7 +306,7 @@ function Index() {
         </div>
       </section>
 
-      <section id="como-escolher" className="bg-[#f6f5ee] py-20 sm:py-24">
+      <section id="como-escolher" className="bg-yellow-300 py-20 sm:py-24">
         <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[0.92fr_1.08fr] lg:items-center lg:px-10">
           <div className="relative overflow-hidden rounded-[2.5rem] bg-emerald-900 shadow-[0_30px_80px_-35px_rgba(6,78,59,0.55)]">
             <img
@@ -345,7 +345,7 @@ function Index() {
         </div>
       </section>
 
-      <section className="bg-white pb-20 sm:pb-24">
+      <section className="bg-yellow-300 pb-20 sm:pb-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-10">
           <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-to-br from-amber-200 via-amber-100 to-emerald-100 px-7 py-12 sm:px-12 sm:py-14 lg:flex lg:items-center lg:justify-between lg:gap-12 lg:px-16">
             <div className="absolute -right-12 -top-12 h-44 w-44 rounded-full border-[32px] border-white/30" />
@@ -362,7 +362,7 @@ function Index() {
         </div>
       </section>
 
-      <footer className="border-t border-emerald-950/10 bg-[#f6f5ee]">
+      <footer className="border-t border-emerald-950/10 bg-yellow-300">
         <div className="mx-auto flex max-w-7xl flex-col gap-6 px-5 py-9 sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-10">
           <div className="flex items-center gap-3 text-emerald-950">
             <span className="grid h-10 w-10 place-items-center rounded-2xl bg-emerald-800 text-white"><Rabbit size={21} /></span>
