@@ -143,6 +143,14 @@
   }
 }
 
+/* Premium red canvas for the landing page while preserving section layout and flow. */
+main {
+  background:
+    radial-gradient(circle at 12% 12%, rgb(248 113 113 / 28%), transparent 28%),
+    radial-gradient(circle at 88% 24%, rgb(127 29 29 / 26%), transparent 30%),
+    linear-gradient(135deg, #dc2626 0%, #b91c1c 52%, #991b1b 100%) !important;
+}
+
 /* Hide Lovable branding badge injected into the page. */
 #lovable-badge,
 [data-lovable-badge],
