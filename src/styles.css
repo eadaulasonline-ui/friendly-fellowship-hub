@@ -145,12 +145,12 @@
   }
 }
 
-/* Premium red canvas for the landing page while preserving section layout and flow. */
+/* Premium navy canvas for the landing page while preserving section layout and flow. */
 main {
   background:
-    radial-gradient(circle at 12% 12%, rgb(248 113 113 / 28%), transparent 28%),
-    radial-gradient(circle at 88% 24%, rgb(127 29 29 / 26%), transparent 30%),
-    linear-gradient(135deg, #dc2626 0%, #b91c1c 52%, #991b1b 100%) !important;
+    radial-gradient(circle at 12% 12%, rgb(59 130 246 / 18%), transparent 28%),
+    radial-gradient(circle at 88% 24%, rgb(30 64 175 / 20%), transparent 30%),
+    linear-gradient(135deg, #0f172a 0%, #0b1f3a 52%, #071426 100%) !important;
 }
 
 /* Hide Lovable branding badge injected into the page. */
