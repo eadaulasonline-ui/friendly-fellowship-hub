@@ -142,3 +142,13 @@
     color: var(--color-foreground);
   }
 }
+
+/* Hide Lovable branding badge injected into the page. */
+#lovable-badge,
+[data-lovable-badge],
+a[href*="lovable.dev"][style*="position: fixed"],
+a[href*="lovable.dev"][style*="position:fixed"] {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
