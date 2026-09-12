@@ -124,8 +124,8 @@ function RabbitIllustration() {
 
 function Index() {
   return (
-    <main className="min-h-screen overflow-hidden bg-[#fbfdf8] text-stone-900">
-      <header className="relative z-20 border-b border-emerald-950/5 bg-[#fbfdf8]/90 backdrop-blur">
+    <main className="min-h-screen overflow-hidden bg-emerald-100 text-stone-900">
+      <header className="relative z-20 border-b border-emerald-950/5 bg-emerald-100/90 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 sm:px-8 lg:px-10">
           <a href="#inicio" className="flex items-center gap-3 font-black tracking-tight text-emerald-950">
             <span className="grid h-10 w-10 place-items-center rounded-2xl bg-emerald-700 text-white shadow-lg shadow-emerald-900/15">
