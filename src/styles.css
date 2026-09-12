@@ -148,9 +148,9 @@ main {
   position: relative;
   isolation: isolate;
   background:
-    radial-gradient(circle at 12% 12%, rgb(57 255 20 / 16%), transparent 28%),
-    radial-gradient(circle at 88% 24%, rgb(0 255 128 / 14%), transparent 30%),
-    linear-gradient(135deg, #020403 0%, #06110a 52%, #000000 100%) !important;
+    radial-gradient(circle at 12% 12%, rgb(255 182 213 / 38%), transparent 30%),
+    radial-gradient(circle at 88% 24%, rgb(244 114 182 / 30%), transparent 32%),
+    linear-gradient(135deg, #2b0718 0%, #701a45 52%, #be185d 100%) !important;
   color: #eaffef !important;
 }
 
