@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fennix Pipeline</title>
+  <link rel="stylesheet" href="sidepanel.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-lockup">
+      <div class="brand-mark"><img src="icons/icon32.png" alt="" /></div>
+      <div class="brand-copy"><strong>Fennix</strong><span>PREMIUM CONSOLE · 3.13</span></div>
+    </div>
+    <div class="top-actions">
+      <button class="chrome-action density-toggle" id="densityToggle" type="button" title="Alternar densidade" aria-label="Alternar densidade">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <button class="chrome-action" id="openDiagnostics" type="button" title="Diagnóstico" aria-label="Diagnóstico">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 18V9m5 9V5m5 13v-7m5 7V3"/></svg>
+      </button>
+      <button class="chrome-action" id="toggleSetup" type="button" title="Configurações" aria-label="Configurações">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06-1.41 1.41-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1.03 1.56V20h-2v-.09a1.7 1.7 0 0 0-1.03-1.56 1.7 1.7 0 0 0-1.87.34l-.06.06-1.41-1.41.06-.06A1.7 1.7 0 0 0 9.46 15a1.7 1.7 0 0 0-1.56-1.03H7.8v-2h.09a1.7 1.7 0 0 0 1.56-1.03 1.7 1.7 0 0 0-.34-1.87l-.06-.06L10.47 7.6l.06.06A1.7 1.7 0 0 0 12.4 8a1.7 1.7 0 0 0 1.03-1.56V6.35h2v.09A1.7 1.7 0 0 0 16.46 8a1.7 1.7 0 0 0 1.87-.34l.06-.06 1.41 1.41-.06.06a1.7 1.7 0 0 0-.34 1.87 1.7 1.7 0 0 0 1.56 1.03h.09v2h-.09A1.7 1.7 0 0 0 19.4 15Z"/></svg>
+      </button>
+      <span class="status-pill" id="globalStatus"><i></i><b>Pronto</b></span>
+    </div>
+  </header>
+
+  <main class="app-shell">
+    <section class="workspace-hero">
+      <button class="project-switcher" id="quickProjectButton" type="button" aria-haspopup="menu" aria-expanded="false">
+        <span class="project-avatar">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 19c-4 1.2-4-2-5-2.5m10 5v-3.1c0-.9.3-1.6.8-2-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.6.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.9.1 3.2.8.9 1.2 2 1.2 3.2 0 4.5-2.7 5.5-5.3 5.8.5.4.8 1.2.8 2.3V22"/></svg>
+        </span>
+        <span class="project-main"><small>Projeto atual</small><strong id="projectBadge">Sem projeto</strong><em id="projectMeta">Configure o GitHub para começar</em></span>
+        <svg class="chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m7 10 5 5 5-5"/></svg>
+      </button>
+      <div class="project-menu hidden" id="projectMenu" role="menu">
+        <div class="menu-head"><strong>Trocar projeto</strong><button class="text-action" id="projectMenuSettings" type="button">Gerenciar</button></div>
+        <div class="project-menu-list" id="projectMenuList"><span class="menu-empty">Carregando projetos…</span></div>
+      </div>
+
+      <div class="service-rail" aria-label="Status das integrações">
+        <button class="service-chip connection" id="githubConnection" type="button"><i></i><span>GitHub</span><small id="githubStatus">Não autorizado</small></button>
+        <button class="service-chip connection" id="chatgptConnection" type="button"><i></i><span>ChatGPT</span><small id="chatgptStatus">Automático</small></button>
+        <button class="service-chip connection" id="lovableConnection" type="button"><i></i><span>Lovable</span><small id="lovableStatus">Não vinculado</small></button>
+      </div>
+
+      <div class="readiness-panel" id="readinessPanel" data-tone="setup">
+        <div class="readiness-copy"><span>PRONTIDÃO DO PIPELINE</span><strong id="readinessLabel">Preparando ambiente</strong><small id="readinessDetail">Verificando conexões…</small></div>
+        <div class="readiness-side"><b id="readinessScore">0%</b><button class="readiness-action" id="readinessAction" type="button">Configurar</button></div>
+        <div class="readiness-meter" aria-hidden="true"><i id="readinessMeter"></i></div>
+      </div>
+
+      <div class="conversation-strip">
+        <div class="conversation-copy"><span>Conversa deste projeto</span><strong id="conversationStatus">Será criada no primeiro envio</strong></div>
+        <div class="conversation-actions">
+          <button class="soft-action" id="openProjectConversation" type="button" title="Abrir conversa" aria-label="Abrir conversa">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 5h5v5M10 14 19 5M19 13v6H5V5h6"/></svg><span>Abrir</span>
+          </button>
+          <button class="soft-action" id="newProjectConversation" type="button" title="Nova conversa">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>Nova</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <nav class="panel-tabs" aria-label="Seções do Fennix">
+      <button class="active" data-panel-tab="prompt" type="button">Criar</button>
+      <button data-panel-tab="tools" type="button">Ações</button>
+      <button data-panel-tab="history" type="button">Histórico</button>
+    </nav>
+
+    <section class="panel-view active" data-panel-view="prompt">
+      <section class="composer-card">
+        <div class="composer-head">
+          <div><span class="eyebrow">FENNIX TURBO</span><h1>O que você quer mudar?</h1><p>Descreva em linguagem simples. O Fennix cuida do ChatGPT, GitHub e preview.</p></div>
+          <span id="activeToolBadge" class="tool-badge hidden"></span>
+        </div>
+
+        <div class="prompt-frame">
+          <textarea id="prompt" rows="8" placeholder="Ex.: deixe o dashboard mais premium, corrija o filtro por unidade e preserve todas as funções atuais."></textarea>
+          <div id="attachmentDropzone" class="attachment-zone" tabindex="0">
+            <div class="attachment-caption">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21.4 11.6-8.5 8.5a6 6 0 0 1-8.5-8.5l9.2-9.2a4 4 0 1 1 5.7 5.7L10 17.4a2 2 0 1 1-2.8-2.8l8.5-8.5"/></svg>
+              <span><strong>Anexos</strong><small>arraste, cole ou clique para adicionar</small></span>
+            </div>
+            <button class="text-action hidden" id="clearAttachments" type="button">Limpar</button>
+          </div>
+          <div id="fileList" class="file-list"></div>
+        </div>
+        <div class="prompt-insight" aria-live="polite"><span id="promptQuality" data-tone="idle"><i></i><b>Escreva seu pedido</b></span><span id="promptCount">0 caracteres</span></div>
+
+        <div class="composer-actions">
+          <label class="attach" title="Anexar arquivos" aria-label="Anexar arquivos">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+            <input type="file" id="files" multiple />
+          </label>
+          <span id="fileCount">Nenhum anexo</span>
+          <button class="button primary run" id="run" type="button"><span>Executar</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14m-5-5 5 5-5 5"/></svg></button>
+          <button class="button danger hidden" id="cancel" type="button">Cancelar</button>
+        </div>
+
+        <div class="pipeline-track" id="pipelineTrack" aria-live="polite">
+          <span data-step="github">GitHub</span><i></i><span data-step="chatgpt">ChatGPT</span><i></i><span data-step="commit">Commit</span><i></i><span data-step="lovable">Preview</span>
+        </div>
+        <div class="shortcut-hint"><kbd>Ctrl</kbd><kbd>K</kbd><span>ações rápidas</span><b>•</b><kbd>Ctrl</kbd><kbd>Enter</kbd><span>executar</span></div>
+      </section>
+
+      <section class="active-run hidden" id="activeRunCard" aria-live="polite">
+        <div class="active-run-head"><span><i></i> Em execução</span><strong id="activeRunPhase">ChatGPT</strong></div>
+        <p id="activeRunPrompt"></p>
+        <small>Você já pode preparar a próxima solicitação.</small>
+      </section>
+
+      <section class="quick-summary">
+        <div class="commit-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 12h10M9 7H6a3 3 0 0 0 0 6h3m6-6h3a3 3 0 0 1 0 6h-3"/></svg></div>
+        <div><span>Último commit</span><strong id="lastCommitTitle">Nenhum commit deste projeto</strong></div>
+        <a id="commitLink" class="mini-link hidden" target="_blank" rel="noreferrer">Abrir</a>
+      </section>
+    </section>
+
+    <section class="panel-view" data-panel-view="tools">
+      <div class="view-head"><div><span class="eyebrow">AÇÕES INTELIGENTES</span><h2>Atalhos para pedidos melhores</h2><p>Escolha uma ação. Seu texto continua sendo a prioridade.</p></div></div>
+      <div class="tool-grid">
+        <button class="tool-card tool-card-featured" data-tool="autopilot" type="button"><span class="tool-icon"><svg viewBox="0 0 24 24"><path d="M12 3l1.6 4.4L18 9l-4.4 1.6L12 15l-1.6-4.4L6 9l4.4-1.6L12 3Zm6 11 .9 2.1L21 17l-2.1.9L18 20l-.9-2.1L15 17l2.1-.9L18 14ZM6 15l1.2 2.8L10 19l-2.8 1.2L6 23l-1.2-2.8L2 19l2.8-1.2L6 15Z"/></svg></span><span><strong>Autopilot</strong><small>Analisa, melhora e valida com autonomia controlada</small></span><em>RECOMENDADO</em></button>
+        <button class="tool-card" data-tool="bugfix" type="button"><span class="tool-icon"><svg viewBox="0 0 24 24"><path d="M8 9h8m-8 4h8m-7-8 1-2m4 2-1-2M6 7l-2-1m14 1 2-1M6 16l-2 1m14-1 2 1M9 19h6a3 3 0 0 0 3-3V9a3 3 0 0 0-3-3H9a3 3 0 0 0-3 3v7a3 3 0 0 0 3 3Z"/></svg></span><span><strong>Corrigir</strong><small>Causa raiz e correção</small></span></button>
+        <button class="tool-card" data-tool="refactor" type="button"><span class="tool-icon"><svg viewBox="0 0 24 24"><path d="M20 7h-7a4 4 0 0 0-4 4v6M4 17h5m-5 0 3-3m-3 3 3 3M20 7l-3-3m3 3-3 3"/></svg></span><span><strong>Refatorar</strong><small>Organização sem regressão</small></span></button>
+        <button class="tool-card" data-tool="ui" type="button"><span class="tool-icon"><svg viewBox="0 0 24 24"><path d="M4 5h16v14H4zM4 9h16M9 9v10"/></svg></span><span><strong>UI Premium</strong><small>Design e experiência</small></span></button>
+        <button class="tool-card" data-tool="optimize" type="button"><span class="tool-icon"><svg viewBox="0 0 24 24"><path d="m13 2-8 12h7l-1 8 8-12h-7z"/></svg></span><span><strong>Performance</strong><small>Velocidade e fluidez</small></span></button>
+        <button class="tool-card" data-tool="security" type="button"><span class="tool-icon"><svg viewBox="0 0 24 24"><path d="M12 3 5 6v5c0 4.6 2.8 8.1 7 10 4.2-1.9 7-5.4 7-10V6zM9 12l2 2 4-4"/></svg></span><span><strong>Segurança</strong><small>Riscos e hardening</small></span></button>
+        <button class="tool-card" data-tool="tests" type="button"><span class="tool-icon"><svg viewBox="0 0 24 24"><path d="M9 3h6m-5 0v5l-5 9a3 3 0 0 0 2.6 4h8.8A3 3 0 0 0 19 17l-5-9V3M8 15h8"/></svg></span><span><strong>Testes</strong><small>Regressão e validação</small></span></button>
+        <button class="tool-card" data-tool="responsive" type="button"><span class="tool-icon"><svg viewBox="0 0 24 24"><path d="M4 5h12v9H4zM18 9h3v10h-6v-3M8 18h4"/></svg></span><span><strong>Responsivo</strong><small>Desktop, tablet e mobile</small></span></button>
+        <button class="tool-card" data-tool="explain" type="button"><span class="tool-icon"><svg viewBox="0 0 24 24"><path d="M5 4h14v16H5zM8 8h8m-8 4h8m-8 4h5"/></svg></span><span><strong>Explicar</strong><small>Leitura técnica objetiva</small></span></button>
+      </div>
+      <button class="button ghost full" id="clearTool" type="button">Remover ação selecionada</button>
+    </section>
+
+    <section class="panel-view" data-panel-view="history">
+      <div class="view-head history-title"><div><span class="eyebrow">MEMÓRIA DO PROJETO</span><h2>Histórico</h2><p>Pedidos, commits e conversas do repositório atual.</p></div><small id="historyCount">0 execuções</small></div>
+      <label class="history-search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input id="historySearch" type="search" placeholder="Buscar pedido, ação ou commit…" autocomplete="off" /></label>
+      <div id="history" class="history"></div>
+    </section>
+  </main>
+
+  <aside id="setupPanel" class="drawer hidden" aria-label="Configurações">
+    <div class="drawer-backdrop" data-close-drawer="setup"></div>
+    <div class="drawer-sheet">
+      <div class="drawer-head"><div><span class="eyebrow">CONFIGURAÇÃO</span><h2>Conexões</h2><p>Configure uma vez. O Fennix memoriza neste navegador.</p></div><button class="chrome-action" id="closeSetup" type="button" aria-label="Fechar"><svg viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+      <div class="setup-meter-wrap"><div class="meter-track"><i id="setupMeter"></i></div><strong id="setupText">0/2 conexões</strong></div>
+      <div id="connectionSummary" class="connection-summary hidden"><strong id="connectionSummaryTitle">Configuração</strong><small id="connectionSummaryMeta"></small></div>
+
+      <section class="setup-step" id="githubStep">
+        <div class="step-head"><b>01</b><div><strong>GitHub</strong><span>Token persistente e seguro</span></div></div>
+        <div class="secret-row"><input id="token" type="password" autocomplete="off" placeholder="github_pat_••••••••" /><button type="button" id="toggleToken" class="chrome-action"><svg viewBox="0 0 24 24"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6S2 12 2 12Z"/><circle cx="12" cy="12" r="2.5"/></svg></button></div>
+        <div class="button-row"><button class="button ghost" id="createToken" type="button">Criar token</button><button class="button primary" id="authorizeGithub" type="button">Autorizar</button></div>
+      </section>
+
+      <section class="setup-step" id="repoStep">
+        <div class="step-head"><b>02</b><div><strong>Repositório</strong><span>Projeto que o Fennix vai alterar</span></div></div>
+        <input id="repoSearch" type="search" placeholder="Buscar repositório…" />
+        <select id="repositorySelect" size="5"></select>
+        <div class="repo-manual"><input id="repositoryManual" placeholder="owner/repository" /><input id="branch" placeholder="main" /></div>
+        <div class="button-row"><button class="button ghost" id="refreshRepos" type="button">Atualizar lista</button><button class="button primary" id="useRepository" type="button">Usar projeto</button></div>
+      </section>
+
+      <section class="setup-step" id="lovableStep">
+        <div class="step-head"><b>03</b><div><strong>Lovable</strong><span>Preview sincronizado por Git</span></div></div>
+        <select id="lovableProject"></select>
+        <div class="button-row"><button class="button ghost" id="openLovableProjects" type="button">Abrir Lovable</button><button class="button primary" id="useLovableProject" type="button">Vincular</button></div>
+      </section>
+
+      <label class="switch-line"><input id="openLovableAfterCommit" type="checkbox" checked /><span><strong>Abrir preview automaticamente</strong><small>Após o commit, atualizar e abrir o resultado.</small></span></label>
+      <input id="reviewBeforeCommit" type="checkbox" checked disabled class="hidden" />
+      <div class="setup-footer"><button class="button danger-text" id="clearAllConfig" type="button">Limpar conexões</button><span id="repositoryHint"></span></div>
+    </div>
+  </aside>
+
+  <aside id="diagnosticPanel" class="drawer hidden" aria-label="Diagnóstico">
+    <div class="drawer-backdrop" data-close-drawer="diagnostic"></div>
+    <div class="drawer-sheet diagnostics-sheet">
+      <div class="drawer-head"><div><span class="eyebrow">SAÚDE DO PIPELINE</span><h2>Diagnóstico</h2><p>Status técnico sem poluir sua área de trabalho.</p></div><button class="chrome-action" id="closeDiagnostics" type="button" aria-label="Fechar"><svg viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+      <div class="diagnostic-actions"><button class="button primary" id="diagnostics" type="button">Executar diagnóstico</button><button class="button ghost" id="clearLogs" type="button">Limpar atividade</button></div>
+      <div id="diagnosticChecks" class="diagnostic-checks"></div>
+      <div class="technical-log-head"><span>Atividade técnica</span><small>últimos eventos</small></div>
+      <div id="logs" class="logs" aria-live="polite"></div>
+    </div>
+  </aside>
+
+  <div class="command-palette hidden" id="commandPalette" role="dialog" aria-modal="true" aria-label="Ações rápidas">
+    <button class="palette-backdrop" data-close-palette type="button" aria-label="Fechar paleta"></button>
+    <div class="palette-card">
+      <div class="palette-search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg><input id="commandInput" type="search" placeholder="Buscar ação…" autocomplete="off"/><kbd>Esc</kbd></div>
+      <div class="palette-list" id="commandList">
+        <button type="button" data-command="prompt"><span>Criar solicitação</span><small>Ir para o composer</small></button>
+        <button type="button" data-command="autopilot"><span>Autopilot</span><small>Analisar, melhorar e validar o pedido</small></button>
+        <button type="button" data-command="ui"><span>UI Premium</span><small>Aplicar ação de design</small></button>
+        <button type="button" data-command="bugfix"><span>Corrigir bug</span><small>Aplicar depuração por causa raiz</small></button>
+        <button type="button" data-command="history"><span>Abrir histórico</span><small>Ver execuções deste projeto</small></button>
+        <button type="button" data-command="conversation"><span>Abrir conversa</span><small>Voltar ao ChatGPT deste repositório</small></button>
+        <button type="button" data-command="settings"><span>Configurações</span><small>GitHub, repositório e Lovable</small></button>
+        <button type="button" data-command="diagnostics"><span>Diagnóstico</span><small>Ver saúde do pipeline</small></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-region" id="toastRegion" aria-live="polite" aria-atomic="false"></div>
+
+  <section class="review hidden" id="reviewSection"><span id="reviewCount"></span><p id="reviewSummary"></p><div id="reviewFiles"></div><input id="commitMessage" /><button id="reject"></button><button id="approve"></button></section>
+  <span id="conversationHiddenAnchor" class="hidden"></span>
+
+  <script src="core.js"></script>
+  <script src="sidepanel.js"></script>
+</body>
+</html>
