@@ -7,10 +7,38 @@ import {
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
+import { MessageCircle } from "lucide-react";
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+
+const whatsappMessage = encodeURIComponent(
+  "Olá! Vim pelo site da NutriCoelho e gostaria de mais informações sobre as rações.",
+);
+const whatsappUrl = `https://wa.me/?text=${whatsappMessage}`;
+
+function WhatsAppContact() {
+  return (
+    <a
+      href={whatsappUrl}
+      target="_blank"
+      rel="noreferrer"
+      aria-label="Entrar em contato pelo WhatsApp"
+      className="group fixed bottom-5 right-5 z-50 inline-flex min-h-14 items-center gap-3 rounded-full border border-white/25 bg-[#25D366] px-4 py-3 font-bold text-white shadow-[0_16px_38px_-14px_rgba(6,78,59,0.55)] outline-none transition duration-300 hover:-translate-y-1 hover:bg-[#20bd5a] hover:shadow-[0_20px_42px_-14px_rgba(6,78,59,0.65)] focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-4 sm:bottom-7 sm:right-7 sm:px-5"
+    >
+      <span className="grid h-9 w-9 place-items-center rounded-full bg-white/18 transition duration-300 group-hover:scale-105">
+        <MessageCircle size={22} strokeWidth={2.4} />
+      </span>
+      <span className="hidden sm:block">
+        <span className="block text-[10px] font-extrabold uppercase tracking-[0.14em] text-white/75">
+          Fale conosco
+        </span>
+        <span className="block text-sm leading-tight">WhatsApp</span>
+      </span>
+    </a>
+  );
+}
 
 function NotFoundComponent() {
   return (
@@ -121,6 +149,7 @@ function RootComponent() {
     <QueryClientProvider client={queryClient}>
       {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
+      <WhatsAppContact />
     </QueryClientProvider>
   );
 }
