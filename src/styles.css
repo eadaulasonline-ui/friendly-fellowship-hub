@@ -143,15 +143,15 @@
   }
 }
 
-/* Neon green + black visual theme while preserving the existing page structure. */
+/* Premium emerald + warm ivory visual layer, aligned with the NutriCoelho identity. */
 main {
   position: relative;
   isolation: isolate;
   background:
-    radial-gradient(circle at 12% 12%, rgb(255 182 213 / 38%), transparent 30%),
-    radial-gradient(circle at 88% 24%, rgb(244 114 182 / 30%), transparent 32%),
-    linear-gradient(135deg, #2b0718 0%, #701a45 52%, #be185d 100%) !important;
-  color: #eaffef !important;
+    radial-gradient(circle at 12% 10%, rgb(250 204 21 / 18%), transparent 28%),
+    radial-gradient(circle at 88% 22%, rgb(16 185 129 / 16%), transparent 30%),
+    linear-gradient(145deg, #fffdf5 0%, #f8f5e8 48%, #eef7ef 100%) !important;
+  color: #173225 !important;
 }
 
 main::before {
@@ -161,191 +161,75 @@ main::before {
   z-index: -1;
   pointer-events: none;
   background:
-    linear-gradient(rgb(57 255 20 / 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgb(57 255 20 / 0.025) 1px, transparent 1px);
+    linear-gradient(rgb(6 78 59 / 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(6 78 59 / 0.035) 1px, transparent 1px);
   background-size: 52px 52px;
   mask-image: linear-gradient(to bottom, black, transparent 82%);
 }
 
 main > div:first-child {
-  background: linear-gradient(90deg, #031107 0%, #0a2412 50%, #031107 100%) !important;
-  color: #7cff6b !important;
-  border-bottom: 1px solid rgb(57 255 20 / 28%);
-  box-shadow: 0 0 26px rgb(57 255 20 / 10%);
+  background: linear-gradient(90deg, #064e3b 0%, #075985 50%, #064e3b 100%) !important;
+  color: #f0fdf4 !important;
+  border-bottom: 1px solid rgb(255 255 255 / 14%);
 }
 
 main header {
-  background: rgb(0 8 3 / 82%) !important;
-  border-color: rgb(57 255 20 / 22%) !important;
-  box-shadow: 0 18px 52px -34px rgb(57 255 20 / 55%) !important;
-  backdrop-filter: blur(22px) saturate(140%);
-  -webkit-backdrop-filter: blur(22px) saturate(140%);
+  background: rgb(255 253 245 / 88%) !important;
+  border-color: rgb(6 78 59 / 12%) !important;
+  box-shadow: 0 18px 52px -34px rgb(6 78 59 / 32%) !important;
+  backdrop-filter: blur(22px) saturate(135%);
+  -webkit-backdrop-filter: blur(22px) saturate(135%);
 }
 
 main header nav {
-  border-color: rgb(57 255 20 / 12%) !important;
-  background: rgb(255 255 255 / 0.035) !important;
-  box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 0.05),
-    0 14px 32px -24px rgb(0 0 0 / 80%) !important;
+  border-color: rgb(6 78 59 / 10%) !important;
+  background: rgb(255 255 255 / 68%) !important;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 80%), 0 14px 32px -24px rgb(6 78 59 / 30%) !important;
 }
 
-main header nav a {
-  color: #b9d9bf !important;
-}
+main header nav a { color: #52645a !important; }
+main header nav a:hover { background: rgb(6 78 59 / 7%) !important; color: #064e3b !important; }
+main header a, main header span, main h1, main h2, main h3 { color: #123c2b !important; }
+main h1, main h2, main h3 { text-wrap: balance; }
+main p, main li { color: #5c6c63; }
+main section { position: relative; }
+main section:not(#inicio) { border-color: rgb(6 78 59 / 8%) !important; }
+main section[id] { scroll-margin-top: 6.5rem; }
 
-main header nav a:hover {
-  background: rgb(57 255 20 / 0.09) !important;
-  color: #8aff77 !important;
+main a[class*="bg-emerald-900"], main button[class*="bg-emerald-900"], main [class*="bg-emerald-900"] {
+  background-color: #064e3b !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 0 1px rgb(6 78 59 / 8%), 0 14px 34px -16px rgb(6 78 59 / 48%) !important;
 }
-
-main header a,
-main header span,
-main h1,
-main h2,
-main h3 {
-  color: #effff1 !important;
-}
-
-main h1,
-main h2,
-main h3 {
-  text-wrap: balance;
-}
-
-main p,
-main li {
-  color: #b8d9bf;
-}
-
-main section {
-  position: relative;
-}
-
-main section:not(#inicio) {
-  border-color: rgb(57 255 20 / 0.08) !important;
-}
-
-main section[id] {
-  scroll-margin-top: 6.5rem;
-}
-
-main a[class*="bg-emerald-900"],
-main button[class*="bg-emerald-900"],
-main [class*="bg-emerald-900"] {
-  background-color: #39ff14 !important;
-  color: #031006 !important;
-  box-shadow:
-    0 0 0 1px rgb(163 255 145 / 0.25),
-    0 12px 38px -14px rgb(57 255 20 / 0.42),
-    0 0 28px rgb(57 255 20 / 0.16) !important;
-}
-
-main a[class*="bg-emerald-900"]:hover,
-main button[class*="bg-emerald-900"]:hover {
-  background-color: #72ff5b !important;
+main a[class*="bg-emerald-900"]:hover, main button[class*="bg-emerald-900"]:hover {
+  background-color: #053c2e !important;
   transform: translateY(-2px);
-  box-shadow:
-    0 0 0 1px rgb(195 255 183 / 0.35),
-    0 18px 44px -16px rgb(57 255 20 / 0.55),
-    0 0 38px rgb(57 255 20 / 0.2) !important;
+  box-shadow: 0 18px 42px -16px rgb(6 78 59 / 55%) !important;
 }
-
-main [class*="text-emerald-700"],
-main [class*="text-emerald-800"],
-main [class*="text-emerald-300"] {
-  color: #6dff57 !important;
-}
-
-main [class*="bg-white"],
-main [class*="bg-[#fff9e8]"] {
-  background-color: rgb(3 14 7 / 88%) !important;
-}
-
-main [class*="border-emerald"] {
-  border-color: rgb(57 255 20 / 26%) !important;
-}
-
-main [class*="rounded-"][class*="border"] {
-  box-shadow:
-    inset 0 1px 0 rgb(255 255 255 / 0.04),
-    0 18px 52px -38px rgb(0 0 0 / 0.9);
-}
-
-main [class*="backdrop-blur"] {
-  backdrop-filter: blur(18px) saturate(135%);
-  -webkit-backdrop-filter: blur(18px) saturate(135%);
-}
-
-main img {
-  filter: saturate(0.94) contrast(1.03);
-}
-
-main a,
-main button,
-main [role="button"] {
-  transition:
-    transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1),
-    box-shadow 220ms ease,
-    border-color 220ms ease,
-    background-color 220ms ease,
-    color 220ms ease,
-    opacity 220ms ease;
-}
-
-main a:focus-visible,
-main button:focus-visible,
-main [role="button"]:focus-visible {
-  outline: none !important;
-  box-shadow:
-    0 0 0 3px #020403,
-    0 0 0 5px rgb(57 255 20 / 0.9),
-    0 0 28px rgb(57 255 20 / 0.22) !important;
-}
-
-main a[href^="#"]:active,
-main button:active {
-  transform: translateY(0) scale(0.985);
-}
+main [class*="text-emerald-700"], main [class*="text-emerald-800"], main [class*="text-emerald-300"] { color: #047857 !important; }
+main [class*="bg-white"], main [class*="bg-[#fff9e8]"] { background-color: rgb(255 255 255 / 72%) !important; }
+main [class*="border-emerald"] { border-color: rgb(6 78 59 / 14%) !important; }
+main [class*="rounded-"][class*="border"] { box-shadow: inset 0 1px 0 rgb(255 255 255 / 72%), 0 18px 52px -38px rgb(6 78 59 / 24%); }
+main [class*="backdrop-blur"] { backdrop-filter: blur(18px) saturate(130%); -webkit-backdrop-filter: blur(18px) saturate(130%); }
+main img { filter: saturate(0.96) contrast(1.02); }
+main a, main button, main [role="button"] { transition: transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 220ms ease, border-color 220ms ease, background-color 220ms ease, color 220ms ease, opacity 220ms ease; }
+main a:focus-visible, main button:focus-visible, main [role="button"]:focus-visible { outline: none !important; box-shadow: 0 0 0 3px #ffffff, 0 0 0 5px rgb(6 78 59 / 72%) !important; }
+main a[href^="#"]:active, main button:active { transform: translateY(0) scale(0.985); }
 
 @media (hover: hover) and (pointer: fine) {
-  main [class*="group"]:hover img {
-    transform: scale(1.025);
-  }
-
-  main img {
-    transition: transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1), filter 300ms ease;
-  }
+  main [class*="group"]:hover img { transform: scale(1.025); }
+  main img { transition: transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1), filter 300ms ease; }
 }
 
 @media (max-width: 767px) {
-  main header {
-    background: rgb(0 8 3 / 92%) !important;
-  }
-
-  main h1 {
-    line-height: 1.02 !important;
-    letter-spacing: -0.045em !important;
-  }
-
-  main section[id] {
-    scroll-margin-top: 5.75rem;
-  }
+  main header { background: rgb(255 253 245 / 94%) !important; }
+  main h1 { line-height: 1.02 !important; letter-spacing: -0.045em !important; }
+  main section[id] { scroll-margin-top: 5.75rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
-    scroll-behavior: auto !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
 }
 
 /* Hide Lovable branding badge injected into the page. */
