@@ -23,7 +23,7 @@ function WhatsAppContact() {
     <a
       href={whatsappUrl}
       target="_blank"
-      rel="noreferrer"
+      rel="noopener noreferrer"
       aria-label="Entrar em contato pelo WhatsApp"
       className="group fixed bottom-5 right-5 z-50 inline-flex min-h-14 items-center gap-3 rounded-full border border-white/25 bg-[#25D366] px-4 py-3 font-bold text-white shadow-[0_16px_38px_-14px_rgba(6,78,59,0.55)] outline-none transition duration-300 hover:-translate-y-1 hover:bg-[#20bd5a] hover:shadow-[0_20px_42px_-14px_rgba(6,78,59,0.65)] focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-4 sm:bottom-7 sm:right-7 sm:px-5"
     >
@@ -42,7 +42,7 @@ function WhatsAppContact() {
 
 function NotFoundComponent() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background px-4">
+    <div className="flex min-h-screen items-center justify-center bg-background px-4" role="main">
       <div className="max-w-md text-center">
         <h1 className="text-7xl font-bold text-foreground">404</h1>
         <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
@@ -104,15 +104,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   head: () => ({
     meta: [
       { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
+      { name: "theme-color", content: "#064e3b" },
+      { name: "description", content: "NutriCoelho: rações para coelhos com opções pensadas para diferentes fases da vida e uma rotina de alimentação equilibrada." },
+      { name: "author", content: "NutriCoelho" },
+      { name: "robots", content: "index, follow" },
+      { property: "og:title", content: "NutriCoelho | Rações para coelhos" },
+      { property: "og:description", content: "Conheça as opções NutriCoelho e encontre uma fórmula adequada à fase e à rotina do seu coelho." },
       { property: "og:type", content: "website" },
+      { property: "og:locale", content: "pt_BR" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       {
@@ -130,11 +131,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <head>
         <HeadContent />
       </head>
       <body>
+        <a href="#conteudo" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-emerald-950 focus:px-4 focus:py-3 focus:text-sm focus:font-bold focus:text-white">Pular para o conteúdo</a>
         {children}
         <Scripts />
       </body>
@@ -147,7 +149,7 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+      {/* Required: nested routes render here. Removing <div id="conteudo"><Outlet /></div> breaks all child routes. */}
       <Outlet />
       <WhatsAppContact />
     </QueryClientProvider>
